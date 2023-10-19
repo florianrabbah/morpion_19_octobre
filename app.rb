@@ -8,13 +8,10 @@ require_relative 'lib/views/show'
 
 class Application
   def start
-    puts "Bienvenue dans le jeu du morpion!"
+    puts "Bienvenue dans le jeu morpion!"
     
-    player1_name = get_user_input("Player 1, entre ton blaze: 🔥🔥🔥 ")
-    player1_age = get_valid_integer_input("Player 1, entre ton âge: 🔥🔥🔥 ")
-
-    player2_name = get_user_input("Player 2, entre ton blaze: 🔥🔥🔥 ")
-    player2_age = get_valid_integer_input("Player 2, entre ton âge: 🔥🔥🔥 ")
+    player1_name, player1_age = get_player_info(1)
+    player2_name, player2_age = get_player_info(2)
 
     player1 = Player.new(player1_name, player1_age, 1)
     player2 = Player.new(player2_name, player2_age, 2)
@@ -24,17 +21,19 @@ class Application
     show.display_board
   end
 
-  def get_user_input(message)
-    print message
-    gets.chomp
-  end
-
-  def get_valid_integer_input(message)
+  def get_player_info(player_number)
+    print "Player #{player_number}, entre ton blaze: 🔥🔥🔥 "
+    name = gets.chomp.upcase
+    
+    age = nil
     loop do
-      input = get_user_input(message)
-      return input.to_i if input.match?(/^\d+$/)
-      puts "Veuillez entrer un nombre valide."
+      print "Player #{player_number}, entre ton âge: 🔥🔥🔥 "
+      age = gets.chomp.to_i
+      break if age > 0
+      puts "Veuillez entrer un âge valide."
     end
+
+    [name, age]
   end
 end
 
