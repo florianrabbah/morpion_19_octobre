@@ -7,7 +7,7 @@
   require_relative 'show'
 
     #classe principale représentant l'application du jeu
-class application
+class Application
  
   #methode pour demarrer le jeu 
 
@@ -28,6 +28,7 @@ def start
     Show.new(game)
   end
 end
+
 
 #Lance l'application en appelant la méthode start
 App.new.start
