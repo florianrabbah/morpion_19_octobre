@@ -8,7 +8,7 @@ class Game
   def initialize (player1_name, player2_name)
    @players = [Player.new(player1_name, "X"), Player.new(player2_name, "O")]
    @current_player = @players.first
-   @board = board.new 
+   @board = Board.new 
   end 
 
 #methode pour changer de joueur apres chaque tour 
