@@ -18,8 +18,8 @@ class Game
 
 #methode pour effectuer un tour de jeu
   def play_turn(position)
-    if @board.cases[position].position == " "
-       @board.cases[position].position = @current_player.symbol
+    if @board.cases[position].content == " "
+       @board.cases[position].content = @current_player.symbol
        switch_players
        return true 
     else 
