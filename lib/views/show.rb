@@ -38,9 +38,15 @@ class Show
   end
 
   # Méthode pour vérifier si le mouvement est valide
-  def valid_move?(position)
-    @game.board.cells.key?(position) && @game.board.cells[position] == " "
-  end
+  # Méthode pour vérifier si le mouvement est valide
+def valid_move?(position)
+  letter, number = position[0], position[1].to_i - 1
+  valid_letters = ["A", "B", "C"]
+  valid_numbers = [0, 1, 2]
+  
+  valid_letters.include?(letter) && valid_numbers.include?(number) && @game.board.cells[letter][number] == " "
+end
+
 
   # Méthode pour vérifier si la partie est terminée
   def game_over?
