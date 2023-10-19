@@ -22,19 +22,21 @@ class Application
   end
 
   def get_player_info(player_number)
-    print "Player #{player_number}, entre ton blaze: 🔥🔥🔥 "
-    name = gets.chomp.upcase
-    
-    age = nil
     loop do
+      print "Player #{player_number}, entre ton blaze: 🔥🔥🔥 "
+      name = gets.chomp.upcase
+      
       print "Player #{player_number}, entre ton âge: 🔥🔥🔥 "
       age = gets.chomp.to_i
-      break if age > 0
-      puts "Veuillez entrer un âge valide."
+      
+      if name.length > 0 && age > 0
+        return [name, age]
+      else
+        puts "Veuillez entrer des informations valides."
+      end
     end
-
-    [name, age]
   end
 end
 
 Application.new.start
+
