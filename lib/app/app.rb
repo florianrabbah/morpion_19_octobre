@@ -1,7 +1,8 @@
   require 'bundler'
   Bundler.require
 
-  require_relative 'board'
+  require_relative 'lib/app/board'
+
   require_relative 'player'
   require_relative 'game'
   require_relative 'show'
