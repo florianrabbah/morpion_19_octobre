@@ -1,30 +1,26 @@
-require_relative 'board'
-require_relative 'players'
-#class representant le jeu 
+require_relative './board_my_project_app'
+require_relative './players_my_project_app'
+
 class Game
   attr_accessor :players, :current_player, :board
 
-#constructeur de la classe,initialise le jeu avec 2 joueurs et un plateau de jeu  
-  def initialize (player1_name, player2_name)
-   @players = [Player.new(player1_name, "X"), Player.new(player2_name, "O")]
-   @current_player = @players.first
-   @board = Board.new 
-  end 
-
-#methode pour changer de joueur apres chaque tour 
-  def switch_players 
-   @current_player = (@current_player == @players.first) ? @players.last : @players.first 
+  def initialize(player1_name, player2_name)
+    @players = [Player.new(player1_name, 0, 1), Player.new(player2_name, 0, 2)]
+    @current_player = @players.first
+    @board = Board.new
   end
 
-#methode pour effectuer un tour de jeu
-  def play_turn(position)
-    if @board.cases[position].content == " "
-       @board.cases[position].content = @current_player.symbol
-       switch_players
-       return true 
-    else 
-       return false 
-    end 
+  def switch_players
+    @current_player = (@current_player == @players.first) ? @players.last : @players.first
+  end
 
+  def play_turn(position)
+    if @board.cells[position[0]][position[1]] == " "
+      @board.cells[position[0]][position[1]] = @current_player.symbol
+      switch_players
+      return true
+    else
+      return false
+    end
   end
 end

@@ -1,4 +1,4 @@
-require_relative 'game'
+require_relative '../app/game_my_project_app'
 
 # Classe représentant l'affichage du jeu
 class Show
@@ -13,7 +13,7 @@ class Show
     ("A".."C").each do |letter|
       print "| "
       (1..3).each do |number|
-        print "#{@game.board.cases["#{letter}#{number}"].content} | "
+        print "#{@game.board.cells["#{letter}"][number - 1]} | "
       end
       puts "\n-------------"
     end
@@ -25,7 +25,7 @@ class Show
       puts "Tour de #{current_player_name}. Choisissez une case (par exemple, A1, B2, C3) :"
       position = gets.chomp.upcase
       if valid_move?(position)
-        @game.play_turn(position)
+        @game.play_turn(convert_position(position))
         display_board
         if game_over?
           display_result
@@ -39,12 +39,11 @@ class Show
 
   # Méthode pour vérifier si le mouvement est valide
   def valid_move?(position)
-    @game.board.cases.key?(position) && @game.board.cases[position].content == " "
+    @game.board.cells.key?(position) && @game.board.cells[position] == " "
   end
 
   # Méthode pour vérifier si la partie est terminée
   def game_over?
-    # Ajoutez ici la logique pour vérifier si la partie est terminée (gagnée ou nulle)
     if @game.board.winning_combination?
       true
     elsif @game.board.full?
@@ -56,18 +55,23 @@ class Show
 
   # Méthode pour afficher le résultat de la partie
   def display_result
-    # Ajoutez ici la logique pour afficher le résultat de la partie (gagnée ou nulle)
-  if @game.board.winning_combination?
-    winner = @game.current_player_name
-    puts "Felicitations, #{winner}  ! Tu as gagné ! "
-  else
-    puts "match nul!"
+    if @game.board.winning_combination?
+      winner = @game.current_player.name
+      puts "Félicitations, #{winner} ! Tu as gagné ! "
+    else
+      puts "Match nul!"
+    end
   end
-  end
-
 
   # Méthode pour obtenir le nom du joueur actuel
   def current_player_name
     @game.current_player.name
+  end
+
+  # Méthode pour convertir la position de l'utilisateur en indices de tableau
+  def convert_position(position)
+    letter = position[0]
+    number = position[1].to_i - 1
+    ["A", "B", "C"].index(letter) * 3 + number
   end
 end

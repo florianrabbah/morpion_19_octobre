@@ -1,5 +1,3 @@
-require 'pry'
-
 class Player
   attr_accessor :name, :age, :symbol
 
@@ -15,13 +13,24 @@ end
 puts "Bienvenue dans le jeu morpion :-)"
 puts "Identifiez-vous pour commencer * *"
 
-print "Player 1, entre ton blaze et ton âge 🔥🔥🔥"
-player1_name = gets.chomp 
-player1_age = gets.chomp.to_i
+def get_user_input(message)
+  print message
+  gets.chomp
+end
 
-print "Player 2, entre ton blaze et ton âge 🔥🔥🔥"
-player2_name = gets.chomp
-player2_age = gets.chomp.to_i
+def get_valid_integer_input(message)
+  loop do
+    input = get_user_input(message)
+    return input.to_i if input.match?(/^\d+$/)
+    puts "Veuillez entrer un nombre valide."
+  end
+end
+
+player1_name = get_user_input("Player 1, entre ton blaze: 🔥🔥🔥 ")
+player1_age = get_valid_integer_input("Player 1, entre ton âge: 🔥🔥🔥 ")
+
+player2_name = get_user_input("Player 2, entre ton blaze: 🔥🔥🔥 ")
+player2_age = get_valid_integer_input("Player 2, entre ton âge: 🔥🔥🔥 ")
 
 player1 = Player.new(player1_name, player1_age, 1)
 player2 = Player.new(player2_name, player2_age, 2)

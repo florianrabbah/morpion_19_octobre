@@ -1,11 +1,11 @@
-require '3.2.2'
+
 require 'pry'
 #definition de la classe Board qui represente le plateau de jeu
 class Board
   attr_accessor :cells #attribut pour stocker les cases du jeu (tableau 2D de 3x3)
 
 #constructeur de la class , initialise le tableau de cases avec des espaces vides 
-  def initialiaze
+  def initialize
   @cells = Array.new(3) { Array.new(3, " ")}
   end
 
