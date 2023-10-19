@@ -5,7 +5,7 @@ class Game
   attr_accessor :players, :currentplayer, :board
 
 #constructeur de la classe,initialise le jeu avec 2 joueurs et un plateau de jeu  
-  def initialiaze (player1_name, player2_name)
+  def initialize (player1_name, player2_name)
    @players = [Player.new(player1_name, "X"), Player.new(player2_name, "O")]
    @current_player = @players.first
    @board = board.new 
