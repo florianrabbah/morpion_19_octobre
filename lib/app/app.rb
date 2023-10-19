@@ -23,12 +23,10 @@ def start
 
     # Crée un jeu avec les deux joueurs
     game = Game.new(player1_name, player2_name)
-
     # Crée un objet de la classe Show pour gérer l'affichage du jeu
-    Show.new(game)
-  end
+ Show.new(game)
+end 
 end
-
 
 #Lance l'application en appelant la méthode start
 App.new.start
