@@ -40,7 +40,7 @@ class Show
   # Méthode pour vérifier si le mouvement est valide
   # Méthode pour vérifier si le mouvement est valide
 def valid_move?(position)
-  letter, number = position[0], position[1].to_i - 1
+  letter, number = position[0].upcase, position[1].to_i - 1
   valid_letters = ["A", "B", "C"]
   valid_numbers = [0, 1, 2]
   
