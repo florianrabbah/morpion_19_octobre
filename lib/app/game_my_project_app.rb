@@ -2,7 +2,7 @@ require_relative 'board'
 require_relative 'players'
 #class representant le jeu 
 class Game
-  attr_accessor :players, :currentplayer, :board
+  attr_accessor :players, :current_player, :board
 
 #constructeur de la classe,initialise le jeu avec 2 joueurs et un plateau de jeu  
   def initialize (player1_name, player2_name)
