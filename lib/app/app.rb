@@ -3,9 +3,9 @@
 
   require_relative 'lib/app/board'
 
-  require_relative 'player'
-  require_relative 'game'
-  require_relative 'show'
+  require_relative 'lib/app/player'
+  require_relative 'lib/app/game'
+  require_relative 'lib/app/show'
 
     #classe principale représentant l'application du jeu
 class Application
